@@ -117,7 +117,7 @@ const DashboardAdmin = (props) => {
           <div className="container-fluid p-0">
             <div class="row mb-2 mb-xl-3">
               <div class="col-auto d-none d-sm-block">
-                <h3><strong>✨</strong> Thông kê</h3>
+                <h3><strong>✨</strong> Thống kê</h3>
               </div>
             </div>
             <div class="row">

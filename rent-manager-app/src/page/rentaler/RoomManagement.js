@@ -131,7 +131,7 @@ function RoomManagement(props) {
                                                     currency: 'VND',
                                                 })}</td>
                                                 <td style={{ color: "green" }}>{item.status === "ROOM_RENT" || item.status === "CHECKED_OUT" ? "Chưa thuê" : "Đã thuê"}</td>
-                                                <td style={{ color: "green" }}>{item.isLocked === "ENABLE" ? "Hiển" : "Ẩn"}</td>
+                                                <td style={{ color: "green" }}>{item.isLocked === "ENABLE" ? "Hiện" : "Ẩn"}</td>
                                                 <td style={{ color: "green" }}>{item.isApprove === false ? "Chưa duyệt" : "Đã duyệt"}</td>
 
                                                 <td>

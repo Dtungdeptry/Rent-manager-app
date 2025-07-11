@@ -75,7 +75,7 @@ function SaveBlog(props) {
                                         <div className="card-box-a card-shadow">
                                             <div className="img-box-a">
                                                 {item?.room.roomMedia[0] ?
-                                                    <img src={item?.room.roomMedia[0].files} alt="" className="img-a img-fluid" style={{ width: "350px", height: "450px" }} />
+                                                    <img src={"http://localhost:8080/document/" + item?.room.roomMedia[0].files} alt="" className="img-a img-fluid" style={{ width: "350px", height: "450px" }} />
                                                     :
                                                     <img src="assets/img/property-1.jpg" alt="" className="img-a img-fluid" style={{ width: "350px", height: "450px" }} />
                                                 }

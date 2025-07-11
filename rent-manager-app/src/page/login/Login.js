@@ -19,10 +19,7 @@ function Login(props) {
                 toast.error(location.state.error, {
                     timeout: 5000
                 });
-                history.replace({
-                    pathname: location.pathname,
-                    state: {}
-                });
+                history(location.pathname, { replace: true });
             }, 100);
         }
     }, [location.state, location.pathname, history]);
@@ -47,7 +44,7 @@ function Login(props) {
                             <div className="row justify-content-center">
                                 <div className="col-md-8">
                                     <div className="mb-4">
-                                        <h3>Đăng nhập <a href="/" style={{ textDecoration: 'none' }}>Estate<span className="color-b">Agency</span></a></h3>
+                                        <h3>Đăng nhập <a href="/" style={{ textDecoration: 'none' }}>PhongTro<span className="color-b">SinhVien</span></a></h3>
                                         <p className="mb-4">Nếu bạn chưa có tài khoản. <a href="/signup">Đăng ký tài khoản mới</a></p>
                                     </div>
                                     <LoginForm />
@@ -118,7 +115,11 @@ function LoginForm() {
                     window.location.reload();
                 }, 2000);
             }).catch(error => {
-                toast.error((error && error.message) || 'Oops! Có điều gì đó xảy ra. Vui lòng thử lại!');
+                if (error.status === 401 || error.message === "Invalid email or password") {
+                    toast.error("Sai tài khoản hoặc mật khẩu. Vui lòng kiểm tra lại!");
+                } else {
+                    toast.error((error && error.message) || 'Oops! Có lỗi xảy ra. Vui lòng thử lại!');
+                }
             });
     };
 
@@ -133,7 +134,7 @@ function LoginForm() {
                 <span>Mật khẩu</span>
                 <input type="password" className="form-control" name="password" value={formState.password} onChange={handleInputChange} required />
             </div>
-            <div class="d-flex mb-5 align-items-center">
+            <div className="d-flex mb-5 align-items-center">
                 <span class="ml-auto"><a href="/forgot-password" class="forgot-pass">Quên mật khẩu</a></span>
             </div>
             <input type="submit" value="Đăng nhập" className="btn text-white btn-block btn-primary" />

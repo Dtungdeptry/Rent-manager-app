@@ -1672,8 +1672,18 @@ a:hover {
 }
 
 .card-box-ico {
-  padding: 1rem 3rem 1rem 2.5rem;
+  padding: 1rem 4rem 1rem 2.5rem;
+  /* border: 5px solid #2eca6a; */
+}
+
+.card-wrapper {
   border: 5px solid #2eca6a;
+  padding: 1rem;
+  display: flex;
+  align-items: center; /* căn giữa icon và tiêu đề */
+  gap: 1rem; /* khoảng cách giữa icon và tiêu đề */
+  border-radius: 8px;
+  background-color: #fff;
 }
 
 .card-box-ico span {
@@ -1685,6 +1695,12 @@ a:hover {
   font-size: 2.5rem;
   font-weight: 600;
   margin-left: -40px;
+}
+
+.card-title-c h2 {
+  font-size: 2rem;
+  margin: 0;
+  color: #333;
 }
 
 @media (min-width: 768px) {

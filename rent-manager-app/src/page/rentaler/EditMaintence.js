@@ -39,6 +39,11 @@ function EditMaintenance(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        if (!contractData.files || typeof contractData.files !== 'object') {
+    toast.warning("Vui lòng cập nhật lại phiếu (tải lại file mới)!");
+    return;
+}
+
         const formData = new FormData();
         formData.append('maintenanceDate', contractData.maintenanceDate);
         formData.append('roomId', roomId);

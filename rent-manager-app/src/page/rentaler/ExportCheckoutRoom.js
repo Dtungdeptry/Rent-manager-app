@@ -19,6 +19,9 @@ function ExportCheckoutRoom(props) {
         nameRoom: '',
         room: '',
         priceRequest: '',
+        waterCostRequest: 0,
+        electricCostRequest: 0,
+        internetCostRequest: '',
         deadlineContract: '',
     });
 
@@ -119,14 +122,32 @@ function ExportCheckoutRoom(props) {
                                         />
                                     </div>
                                     <div className="mb-3">
+                                        <label className="form-label" htmlFor="waterCost">Tiền nước</label>
+                                        <input type="number" className="form-control" id="waterCost" name="waterCost" value={contractData.waterCost}
+                                            onChange={handleInputChange}
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label className="form-label" htmlFor="publicElectricCost">Tiền điện chung</label>
+                                        <input type="number" className="form-control" id="publicElectricCost" name="publicElectricCost" value={contractData.publicElectricCost}
+                                            onChange={handleInputChange}
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label className="form-label" htmlFor="internetCost">Tiền mạng</label>
+                                        <input type="number" className="form-control" id="internetCost" name="internetCost" value={contractData.room && contractData.room.internetCost}
+                                            onChange={handleInputChange}
+                                        />
+                                    </div>
+                                    <div className="mb-3">
                                         <label className="form-label" htmlFor="price">Thời Gian Điểm Bắt Đầu Thuê</label>
-                                        <input type="datetime-local" className="form-control" id="price" name="createAt" value={contractData.createdAt}
+                                        <input type="datetime" className="form-control" id="price" name="createAt" value={contractData.createdAt}
                                             onChange={handleInputChange}
                                         />
                                     </div>
                                     <div className="mb-3">
                                         <label className="form-label" htmlFor="price">Thời Hạn</label>
-                                        <input type="datetime-local" className="form-control" id="price" name="deadlineContract" value={contractData.deadlineContract}
+                                        <input type="datetime" className="form-control" id="price" name="deadlineContract" value={contractData.deadlineContract}
                                             onChange={handleInputChange}
                                         />
                                     </div>
@@ -162,20 +183,29 @@ function exportToExcel(contractData) {
 
     const formattedPrice = contractData.priceRequest ? formatCurrency(contractData.priceRequest) : '';
 
-    const deadlineYear = parseInt(new Date(contractData.deadlineContract).getFullYear());
-    const currentYear = parseInt(new Date().getFullYear());
+    // Lấy ngày hạn hợp đồng, nếu không hợp lệ thì dùng ngày hiện tại
+    const deadlineDate = new Date(contractData.deadlineContract);
+    const now = new Date();
 
-    const deadlineMonth = parseInt(new Date(contractData.deadlineContract).getMonth());
-    const currentMonth = parseInt(new Date().getMonth());
+    const deadlineYear = isNaN(deadlineDate.getFullYear()) ? now.getFullYear() : deadlineDate.getFullYear();
+    const currentYear = now.getFullYear();
 
-    const pricePerMonth = parseFloat(contractData.room.price);
-    const priceRequest = parseFloat(contractData.priceRequest);
+    const deadlineMonth = isNaN(deadlineDate.getMonth()) ? now.getMonth() : deadlineDate.getMonth();
+    const currentMonth = now.getMonth();
 
-    const result = ((deadlineYear - currentYear) * 12 + (deadlineMonth - currentMonth)) * pricePerMonth + priceRequest;
+    // Parse các giá trị số, nếu parse lỗi thì dùng 0
+    const pricePerMonth = parseFloat(contractData.room?.price) || 0;
+    const priceRequest = parseFloat(contractData.priceRequest) || 0;
+    const waterCostRequest = parseFloat(contractData.waterCostRequest) || 0;
+    const electricCostRequest = parseFloat(contractData.electricCostRequest) || 0;
+    const internetCostRequest = parseFloat(contractData.internetCostRequest) || 0;
+
+
+    const result = ((deadlineYear - currentYear) * 12 + (deadlineMonth - currentMonth)) * pricePerMonth + priceRequest + waterCostRequest + electricCostRequest + internetCostRequest;
     // Add a worksheet to the workbook
     const worksheet = XLSX.utils.aoa_to_sheet([
-        ['Tên Hóa Đơn', 'Thời Gian Điểm Bắt Đầu Thuê', 'Chi phí lặp đặt (Theo yêu cầu)', 'Giá Phòng', 'Tên Phòng', 'Thời Hạn', 'Người thuê', 'Tổng Tiền'],
-        [contractData.nameBill, contractData.createdAt, formattedPrice, contractData.room.price, contractData.room.title, contractData.deadlineContract, contractData.nameOfRent, result],
+        ['Tên Hóa Đơn', 'Thời Gian Điểm Bắt Đầu Thuê', 'Chi phí lặp đặt (Theo yêu cầu)', 'Giá Phòng', 'Tiền nước', 'Tiền điện chung', 'Tiền mạng', 'Tên Phòng', 'Thời Hạn', 'Người thuê', 'Tổng Tiền'],
+        [contractData.nameBill, contractData.createdAt, formattedPrice, contractData.room.price, contractData.waterCost, contractData.publicElectricCost, contractData.room.internetCost, contractData.room.title, contractData.deadlineContract, contractData.nameOfRent, result],
     ]);
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
 

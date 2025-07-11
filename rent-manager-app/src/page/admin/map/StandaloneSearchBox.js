@@ -9,7 +9,7 @@ const PlacesWithStandaloneSearchBox = ({ latLong }) => {
     getPlacePredictions,
     isPlacePredictionsLoading,
   } = useGoogle({
-    apiKey: 'AIzaSyDvF2YFxTxLRUxDRvtkISAma8qICwwsAIY',
+    apiKey: 'AIzaSyDqnxC0m1Dn-72jPGKlv8A6paSUohH8V88',
   });
   const [value, setValue] = useState("");
   const [selectedPlace, setSelectedPlace] = useState(null);

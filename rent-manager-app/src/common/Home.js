@@ -79,9 +79,7 @@ class Home extends Component {
                                     </div>
                                     <div className="card-body-c">
                                         <p className="content-c">
-                                            Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. Praesent sapien massa,
-                                            convallis a pellentesque
-                                            nec, egestas non nisi.
+                                            Mọi dữ liệu đều được mã hóa và lưu trữ an toàn. Chúng tôi đặt sự an tâm của bạn lên hàng đầu trong mọi giao dịch.
                                         </p>
                                     </div>
                                 </div>
@@ -98,9 +96,7 @@ class Home extends Component {
                                     </div>
                                     <div className="card-body-c">
                                         <p className="content-c">
-                                            Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. Praesent sapien massa,
-                                            convallis a pellentesque
-                                            nec, egestas non nisi.
+                                            Chúng tôi mang đến cơ hội thuê nhà với 0% lãi suất – không lo chi phí đội lên, an tâm ổn định cuộc sống.
                                         </p>
                                     </div>
                                 </div>
@@ -117,9 +113,7 @@ class Home extends Component {
                                     </div>
                                     <div className="card-body-c">
                                         <p className="content-c">
-                                            Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. Praesent sapien massa,
-                                            convallis a pellentesque
-                                            nec, egestas non nisi.
+                                            Quy trình duyệt tin và thuê nhà diễn ra nhanh chóng chỉ trong vài bước. Tiết kiệm thời gian, chuyển vào ở ngay trong ngày.
                                         </p>
                                     </div>
                                 </div>
@@ -152,7 +146,7 @@ class Home extends Component {
                                         <div className="card-box-a card-shadow">
                                             <div className="img-box-a">
                                                 {room.roomMedia[0] ?
-                                                    <img src={room.roomMedia[0].files} alt="" className="img-a img-fluid" style={{ width: "350px", height: "450px" }} />
+                                                    <img src={"http://localhost:8080/document/"+ room.roomMedia[0].files} alt="" className="img-a img-fluid" style={{ width: "350px", height: "450px" }} />
                                                     :
                                                     <img src="assets/img/property-1.jpg" alt="" className="img-a img-fluid" style={{ width: "350px", height: "450px" }} />
                                                 }
@@ -228,7 +222,7 @@ class Home extends Component {
                                         <h2 className="title-a">Người cho thuê</h2>
                                     </div>
                                     <div className="title-link">
-                                        <a href="agents-grid.html">Tất cả người cho thuê trọ
+                                        <a href="angent-gird">Tất cả người cho thuê trọ
                                             <span className="bi bi-chevron-right"></span>
                                         </a>
                                     </div>

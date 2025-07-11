@@ -23,7 +23,7 @@ class ForgotPassword extends Component {
                                     <div className="col-md-8">
                                         <div className="mb-4">
                                             <h3>Quên mật khẩu</h3>
-                                            <p className="mb-4">Điền mail của trang mà bạn đăng nhập trên trang web của chúng tôi.</p>
+                                            <p className="mb-4">Điền email mà bạn đã đăng nhập trên trang web của chúng tôi.</p>
                                         </div>
                                         <ForgotPasswordForm />
                                     </div>

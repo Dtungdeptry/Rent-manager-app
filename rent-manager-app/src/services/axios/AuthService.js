@@ -24,7 +24,16 @@ class AuthService {
         }
       }
     );
-
   }
+
+  // ví dụ hàm cập nhật thông tin user, không phải upload avatar hay upload profile ảnh
+  updateUserProfile(userData) {
+    return axios.put(BASE_URL + 'user/update', userData, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+      }
+    });
+  }
+
 }
 export default new AuthService();

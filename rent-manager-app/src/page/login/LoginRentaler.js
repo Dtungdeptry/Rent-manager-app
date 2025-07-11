@@ -47,7 +47,7 @@ function LoginRentaler(props) {
                             <div className="row justify-content-center">
                                 <div className="col-md-8">
                                     <div className="mb-4">
-                                        <h3>Đăng nhập <a href="/" style={{ textDecoration: 'none' }}>Estate<span className="color-b">Agency</span></a></h3>
+                                        <h3>Đăng nhập <a href="/" style={{ textDecoration: 'none' }}>PhongTro<span className="color-b">SinhVien</span></a></h3>
                                         <p className="mb-4">Nếu bạn chưa có tài khoản. <a href="/signup-rentaler">Đăng ký tài khoản mới</a></p>
                                     </div>
                                     <LoginForm />
@@ -90,14 +90,18 @@ function LoginForm() {
 
         login(loginRequest)
             .then(response => {
-                localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-                toast.success("Bạn đã đăng nhập thành công!!");
-                history("/rentaler");
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
+                    localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+                    toast.success("Bạn đã đăng nhập thành công!!");
+                    history("/rentaler");
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);      
             }).catch(error => {
+                if (error && error.status === 401) {
+                toast.error("Sai tài khoản hoặc mật khẩu.");
+            } else {
                 toast.error((error && error.message) || 'Oops! Có điều gì đó xảy ra. Vui lòng thử lại!');
+            }
             });
     };
 

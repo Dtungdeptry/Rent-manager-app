@@ -30,7 +30,7 @@ public class BlogStoreServiceImpl extends BaseService implements BlogStoreServic
     private final MapperUtils mapperUtils;
     @Override
     public MessageResponse saveBlog(BlogStoreRequest storeRequest) {
-        User customer = userRepository.findById(getUserId()).orElseThrow(() -> new BadRequestException("Tài khoảng không tồn tại"));
+        User customer = userRepository.findById(getUserId()).orElseThrow(() -> new BadRequestException("Tài khoản không tồn tại"));
         Room room = roomRepository.findById(storeRequest.getRoomId()).orElseThrow(() -> new BadRequestException("Thông tin phòng không tồn tại."));
         Optional<BlogStore> blogStore = blogStoreRepository.findByRoomAndUser(room, customer);
         if (blogStore.isPresent()) {

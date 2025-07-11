@@ -12,6 +12,7 @@ const UserProfile = (props) => {
 
     const [imageFile, setImageFile] = useState(null);
     const [address, setAddress] = useState(currentUser?.address);
+    const [phone, setPhone] = useState(currentUser?.phone);
 
     const handleAddressChange = (event) => {
         setAddress(event.target.value);
@@ -22,7 +23,7 @@ const UserProfile = (props) => {
         const file = event.target.files[0];
         if (file) {
             // Perform file validation
-            const allowedTypes = ["image/jpeg", "image/png"];
+            const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
             const maxFileSize = 1 * 1024 * 1024; // 1MB
 
             // Check file type
@@ -41,25 +42,42 @@ const UserProfile = (props) => {
         }
     };
 
-
-
-    const handleSubmit = (event) => {
-        const formData = new FormData();
-        formData.append('file', imageFile);
-        formData.append('address', address);
-
-        event.preventDefault();
-        // Handle form submission
-
-        AuthService.uploadProfile(formData).then(response => {
-            toast.success(response.message);
-            toast.success("Cập nhật thông tin cá nhân thành công.");
-            loadCurrentUser();
-        }).catch(error => {
-            toast.error((error && error.message) || 'Oops! Có điều gì đó xảy ra. Vui lòng thử lại!');
-        }
-        )
+    const handlePhoneChange = (event) => {
+        setPhone(event.target.value);
     };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            // Nếu có ảnh mới, upload ảnh trước
+            if (imageFile) {
+            const formData = new FormData();
+            formData.append('file', imageFile);
+
+            await AuthService.uploadAvatar(formData);
+            toast.success("Cập nhật ảnh đại diện thành công.");
+            }
+
+            // Cập nhật thông tin cá nhân (phone, address, name, id)
+            const userData = {
+            id: currentUser.id,
+            phone,
+            address,
+            name: currentUser.name, // Nếu có thể update tên thì cho người dùng nhập
+            // email có thể không cần update nếu bạn không cho phép
+            };
+
+            await AuthService.updateUserProfile(userData);  // Hàm mới bạn tạo trong AuthService
+
+            toast.success("Cập nhật thông tin cá nhân thành công.");
+            loadCurrentUser(); // reload thông tin user mới
+
+        } catch (error) {
+            toast.error((error.response?.data || error.message) || 'Có lỗi xảy ra, vui lòng thử lại.');
+        }
+    };
+
 
     if (!authenticated) {
         return <Navigate
@@ -116,7 +134,10 @@ const UserProfile = (props) => {
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label" >Số điện thoại</label>
-                                                <input type="text" className="form-control" name='phone' value={currentUser && currentUser.phone} id="inputPassword4" placeholder="Số điện thoại" disabled />
+                                                <input type="text" className="form-control" name='phone' 
+                                                    value={phone} 
+                                                    onChange={handlePhoneChange} 
+                                                    id="inputPhone" placeholder="Số điện thoại" />
                                             </div>
                                         </div>
                                         <div class="mb-3">
@@ -128,11 +149,11 @@ const UserProfile = (props) => {
                                             <input type="text" className="form-control" name='address'
                                                 value={address}
                                                 onChange={handleAddressChange}
-                                                id="inputAddress" placeholder="Peter Parker" />
+                                                id="inputAddress" placeholder="Nhập địa chỉ vào đây" />
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Tải Hình Ảnh</label>
-                                            <input class="form-control" accept=".png, .jpeg" type="file" onChange={onFileChange} />
+                                            <input class="form-control" accept=".png, .jpeg, .jpg" type="file" onChange={onFileChange} />
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>

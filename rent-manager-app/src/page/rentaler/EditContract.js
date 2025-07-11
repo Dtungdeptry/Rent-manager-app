@@ -7,6 +7,7 @@ import { getContract, getRentOfHome, getRoom } from '../../services/fetch/ApiUti
 import ContractService from '../../services/axios/ContractService';
 
 
+
 function EditContract(props) {
     const { authenticated, role, currentUser, location, onLogout } = props;
     const { id } = useParams();
@@ -21,6 +22,7 @@ function EditContract(props) {
         files: [],
         room: ''
     });
+    
     const [roomId, setRoomId] = useState();
 
     const handleInputChange = (event) => {
@@ -38,33 +40,46 @@ function EditContract(props) {
         }));
     };
 
+    console.log("contractData", contractData);
+
 
     const handleSubmit = (event) => {
-        event.preventDefault();
+    event.preventDefault();
 
-        const formData = new FormData();
-        formData.append('name', contractData.name);
-        formData.append('roomId', roomId);
-        formData.append('nameOfRent', contractData.nameOfRent);
-        formData.append('numOfPeople', contractData.numOfPeople);
-        formData.append('phone', contractData.phone);
-        formData.append('deadlineContract', contractData.deadlineContract);
-        contractData.files && contractData.files.forEach((file, index) => {
-            formData.append(`files`, file);
+    // Kiểm tra nếu contractData.files không tồn tại hoặc không phải mảng/FileList
+    if (!contractData.files || typeof contractData.files !== 'object') {
+        toast.warning("Vui lòng cập nhật lại hợp đồng (tải lại file mới)!");
+        return;
+    }
+
+    const filesArray = Array.from(contractData.files);
+
+    if (filesArray.length === 0) {
+        toast.warning("Vui lòng chọn ít nhất một file hợp đồng!");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('name', contractData.name);
+    formData.append('roomId', roomId);
+    formData.append('nameOfRent', contractData.nameOfRent);
+    formData.append('numOfPeople', contractData.numOfPeople);
+    formData.append('phone', contractData.phone);
+    formData.append('deadlineContract', contractData.deadlineContract);
+
+    filesArray.forEach((file) => {
+        formData.append('files', file);
+    });
+
+    ContractService.editContractInfo(id, formData)
+        .then(response => {
+            toast.success("Cập nhật hợp đồng thành công!");
+        })
+        .catch(error => {
+            toast.error((error && error.message) || 'Có lỗi xảy ra. Vui lòng thử lại!');
         });
-        console.log(formData.getAll)
-        ContractService.editContractInfo(id, formData)
-            .then(response => {
-                toast.success(response.message);
-                toast.success("Cập nhật hợp đồng thành công!!")
+};
 
-            })
-            .catch(error => {
-                toast.error((error && error.message) || 'Oops! Có điều gì đó xảy ra. Vui lòng thử lại!');
-            });
-
-        console.log(contractData);
-    };
 
     useEffect(() => {
         getContract(id)
@@ -127,7 +142,7 @@ function EditContract(props) {
                                     <div className="row">
                                         <div className="mb-3 col-md-6">
                                             <label className="form-label" htmlFor="title">Số lượng người</label>
-                                            <input type="text" className="form-control" id="title" name="numOfPeople" value={contractData.numOfPeople} onChange={handleInputChange} />
+                                            <input type="number" className="form-control" id="title" name="numOfPeople" value={contractData.numOfPeople} onChange={handleInputChange} />
                                         </div>
                                         <div className="mb-3 col-md-6">
                                             <label className="form-label" htmlFor="description">Số điện thoại</label>

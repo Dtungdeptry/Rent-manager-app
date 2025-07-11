@@ -21,7 +21,10 @@ function AddRoom(props) {
         assets: [
             { name: '', number: '' }
         ],
-        files: []
+        files: [],
+        waterCost: 0,
+        publicElectricCost: 0,
+        internetCost: 0
     });
 
     const handleInputChange = (event) => {
@@ -78,6 +81,9 @@ function AddRoom(props) {
         formData.append('locationId', roomData.locationId);
         formData.append('categoryId', roomData.categoryId);
         formData.append('asset', roomData.assets.length);
+        formData.append('waterCost', roomData.waterCost);
+        formData.append('publicElectricCost', roomData.publicElectricCost);
+        formData.append('internetCost', roomData.internetCost);
         roomData.assets.forEach((asset, index) => {
             formData.append(`assets[${index}][name]`, asset.name);
             formData.append(`assets[${index}][number]`, asset.number);
@@ -162,18 +168,38 @@ function AddRoom(props) {
                                         <label className="form-label" htmlFor="price">Giá</label>
                                         <input type="number" className="form-control" id="price" name="price" value={roomData.price} onChange={handleInputChange} />
                                     </div>
+                                    <div className="mb-3">
+                                        <label className="form-label" htmlFor="waterCost">Tiền nước (nếu là giá cố định)</label>
+                                        <input type="number" className="form-control" id="waterCost" name="waterCost" value={roomData.waterCost} onChange={handleInputChange} />
+                                    </div>
+                                    {/* <div className="mb-3">
+                                        <label className="form-label" htmlFor="publicElectricCost">Tiền điện chung</label>
+                                        <input type="number" className="form-control" id="publicElectricCost" name="publicElectricCost" value={roomData.publicElectricCost} onChange={handleInputChange} />
+                                    </div> */}
+                                    <div className="mb-3">
+                                        <label className="form-label" htmlFor="internetCost">Tiền mạng</label>
+                                        <input type="number" className="form-control" id="internetCost" name="internetCost" value={roomData.internetCost} onChange={handleInputChange} />
+                                    </div>
                                     <div className="row">
                                         <div className="mb-3 col-md-6">
                                             <label className="form-label" htmlFor="locationId">Khu vực</label>
                                             <select className="form-select" id="locationId" name="locationId" value={roomData.locationId} onChange={handleInputChange}>
                                                 <option value={0}>Chọn...</option>
-                                                <option value={1}>Hà Nội</option>
+                                                <option value={1}>Ba Đình</option>
+                                                <option value={2}>Hoàn Kiếm</option>
+                                                <option value={3}>Tây Hồ</option>
+                                                <option value={4}>Long Biên</option>
+                                                <option value={5}>Cầu Giấy</option>
+                                                <option value={6}>Đống Đa</option>
+                                                <option value={7}>Hai Bà Trưng</option>
+                                                <option value={8}>Hoàng Mai</option>
+                                                <option value={9}>Thanh Xuân</option>
                                             </select>
                                         </div>
                                         <div className="mb-3 col-md-6">
                                             <label className="form-label" htmlFor="address">Địa Chỉ</label>
-                                            {/* <input type="text" className="form-control" id="address" name="address" value={roomData.address} onChange={handleInputChange} /> */}
-                                            <PlacesWithStandaloneSearchBox latLong={setLatLong} />
+                                            <input type="text" className="form-control" id="address" name="address" value={roomData.address} onChange={handleInputChange} />
+                                            {/* <PlacesWithStandaloneSearchBox latLong={setLatLong} /> */}
                                         </div>
 
 
@@ -181,9 +207,11 @@ function AddRoom(props) {
                                             <label className="form-label" htmlFor="categoryId">Danh mục</label>
                                             <select className="form-select" id="categoryId" name="categoryId" value={roomData.categoryId} onChange={handleInputChange}>
                                                 <option value={0}>Chọn...</option>
-                                                <option value={1}>Bất động sản</option>
-                                                <option value={2}>Phòng trọ</option>
-                                                <option value={3}>Chung cư mini</option>
+                                                <option value={1}>Phòng trọ</option>
+                                                <option value={2}>Chung cư mini</option>
+                                                <option value={3}>Nhà nguyên căn</option>
+                                                <option value={4}>Văn phòng cho thuê</option>
+                                                <option value={5}>Mặt bằng kinh doanh</option>
                                             </select>
                                         </div>
                                     </div>

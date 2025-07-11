@@ -71,59 +71,25 @@ function SignupRentaler(props) {
                             <div className="row justify-content-center">
                                 <div className="col-md-8">
                                     <div className="mb-4">
-                                        <h3>Đăng kí <a href="/" style={{ textDecoration: 'none' }}>Estate<span className="color-b">Agency</span></a></h3>
+                                        <h3>Đăng kí <a href="/" style={{ textDecoration: 'none' }}>PhongTro<span className="color-b">SinhVien</span></a></h3>
                                         <p className="mb-4">Nếu bạn có tài khoản. <a href="/login-rentaler">Đăng nhập</a></p>
                                     </div>
-                                    <form onSubmit={handleSubmit}>
-                                        <div className="form-group first">
-                                            <span>Email</span>
-                                            <input type="email" className="form-control" id="username" name="email"
-                                                value={email} onChange={(e) => setEmail(e.target.value)} required />
+                                    <div className="form-group">
+                                        <p>
+                                            Nếu bạn đã có tài khoản người dùng và muốn nâng cấp lên tài khoản đăng tin, vui lòng liên hệ qua phần <strong>Liên hệ</strong> hoặc gửi email đến <a href="mailto:dtung6898@gmail.com">dtung6898@gmail.com</a> để yêu cầu nâng cấp tài khoản.
+                                        </p>
+                                        <p>
+                                            Vui lòng để tên tiêu đề là "Nâng cấp tài khoản".
+                                        </p>
+                                        <p>
+                                            Nội dung ghi email của tài khoản muốn nâng cấp. Chúng tôi sẽ hướng dẫn bạn cách để đăng kí tài khoản đăng tin. 
+                                        </p>
+                                        <p>
+                                            Hoặc bạn có thể vào đây xác nhận thanh toán nâng cấp tài khoản:&nbsp;
+                                            <a href="/rentaler/payment">Thanh toán</a>
+                                        </p>
+                                    </div>
 
-                                        </div>
-                                        <div className="form-group first">
-                                            <span>Họ và tên</span>
-                                            <input type="text" className="form-control" id="username"
-                                                name="name"
-                                                value={name} onChange={(e) => setName(e.target.value)} required />
-
-
-                                        </div>
-                                        <div className="form-group first">
-                                            <span>Số điện thoại</span>
-                                            <input type="text" className="form-control" id="phone"
-                                                name="name"
-                                                value={phone} onChange={(e) => setPhone(e.target.value)} required />
-
-
-                                        </div>
-                                        <div className="form-group first">
-                                            <span>Địa chỉ</span>
-                                            <input type="text" className="form-control" id="address"
-                                                name="name"
-                                                value={address} onChange={(e) => setAddress(e.target.value)} required />
-
-
-                                        </div>
-                                        <div className="form-group last mb-4">
-                                            <span>Mật khẩu</span>
-                                            <input type="password" className="form-control" id="password"
-                                                name="password"
-                                                value={password} onChange={(e) => setPassword(e.target.value)} required/>
-
-                                        </div>
-                                        <div className="form-group last mb-4">
-                                            <span>Nhập lại mật khẩu</span>
-                                            <input type="password" className="form-control" id="password"
-                                                name="confirmPassword"
-                                                value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
-
-                                        </div>
-
-
-                                        <input type="submit" value="Đăng kí" className="btn text-white btn-block btn-primary" />
-
-                                    </form>
                                 </div>
                             </div>
 

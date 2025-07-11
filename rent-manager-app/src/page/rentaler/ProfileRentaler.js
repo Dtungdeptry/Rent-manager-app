@@ -10,7 +10,12 @@ const ProfileRentaler = (props) => {
     const { authenticated, role, currentUser, location, onLogout } = props;
 
     const [imageFile, setImageFile] = useState(null);
-    const [zalo, setZalo] = useState(currentUser?.zaloUrl);
+    const [zalo, setZalo] = useState(() => {
+    if (currentUser?.zaloUrl) {
+        return currentUser.zaloUrl.replace("https://zalo.me/", "");
+    }
+    return "";
+    });
     const [facebook, setFacebook] = useState(currentUser?.facebookUrl);
 
     const handleZaloChange = (event) => {
@@ -53,7 +58,7 @@ const ProfileRentaler = (props) => {
         // Prepare data for updating the user profile
         const formData = new FormData();
         formData.append('file', imageFile);
-        formData.append('zalo', zalo);
+        formData.append('zalo', `https://zalo.me/${zalo}`);
         formData.append('facebook', facebook)
 
         event.preventDefault();
@@ -136,14 +141,14 @@ const ProfileRentaler = (props) => {
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Tải Hình Ảnh</label>
-                                    <input class="form-control" accept=".png, .jpeg" type="file" onChange={onFileChange} />
+                                    <input class="form-control" accept=".png, .jpeg, .jpg" type="file" onChange={onFileChange} />
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="inputAddress">Liện hệ Zalo </label>
                                     <input type="text" className="form-control" name='zalo'
                                         value={zalo}
                                         onChange={handleZaloChange}
-                                        id="inputAddress" placeholder="https://zalo.me/(Số điện thoại)" />
+                                        id="inputAddress" placeholder="Zalo Phone" />
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="inputAddress">Liên Hệ Facebook</label>

@@ -20,10 +20,10 @@ class Footer extends Component {
                                     <div class="w-footer-a">
                                         <ul class="list-unstyled">
                                             <li class="color-a">
-                                                <span class="color-text-a">Email .</span> contact@example.com
+                                                <span class="color-text-a">Email .</span> dtung6898@gmail.com
                                             </li>
                                             <li class="color-a">
-                                                <span class="color-text-a">Số điện thoại .</span> +54 356 945234
+                                                <span class="color-text-a">Số điện thoại .</span> +84 586 540730
                                             </li>
                                         </ul>
                                     </div>

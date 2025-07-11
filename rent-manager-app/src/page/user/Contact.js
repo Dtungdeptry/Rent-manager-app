@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 const Contact = (props) => {
   const [title, setTitle] = useState('');
   const [nameOfRentaler, setNameOfRentaler] = useState('');
-  const [toEmail, setToEmail] = useState('');
+  const [toEmail, setToEmail] = useState('dtung6898@gmail.com');
   const [description, setDescription] = useState('');
 
   const handleTitleChange = (event) => {
@@ -82,7 +82,7 @@ const handleSubmit = (event) => {
                 <div className="contact-map box">
                   <div id="map" className="contact-map">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes+Square!5e0!3m2!1ses-419!2sve!4v1510329142834"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.5127560703554!2d105.79298567584026!3d20.972073489721932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135acd98a0c898d%3A0x81611117bb2847d0!2zMjI1IMSQLiBZw6puIFjDoSwgVMOibiBUcmnhu4F1LCBUaGFuaCBUcsOsLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1748518653661!5m2!1svi!2s" 
                       width="100%"
                       height="450"
                       frameBorder="0"
@@ -114,15 +114,9 @@ const handleSubmit = (event) => {
                         </div>
                         <div className="col-md-6 mb-3">
                           <div className="form-group">
-                            <input
-                              name="toEmail"
-                              value={toEmail}
-                              onChange={handleToEmailChange}
-                              type="email"
-                              className="form-control form-control-lg form-control-a"
-                              placeholder="Email Của Bạn"
-                              required
-                            />
+                            <p className="form-control form-control-lg form-control-a" style={{ backgroundColor: "#f8f9fa", padding: "0.5rem", marginBottom: "0" }}>
+                              dtung6898@gmail.com
+                            </p>
                           </div>
                         </div>
                         <div className="col-md-12 mb-3">
@@ -174,13 +168,13 @@ const handleSubmit = (event) => {
                       </div>
                       <div className="icon-box-content">
                         <p className="mb-1">
-                          <span className="color-a">Địa chỉ:</span> 1234 Đường ABC, Thành phố XYZ
+                          <span className="color-a">Địa chỉ:</span> 225 Yên Xá, Tân Triều, Thanh Trì, Hà Nội
                         </p>
                         <p className="mb-1">
-                          <span className="color-a">Điện thoại:</span> +1 234 5678
+                          <span className="color-a">Điện thoại:</span> +84 586 540730
                         </p>
                         <p className="mb-1">
-                          <span className="color-a">Email:</span> info@example.com
+                          <span className="color-a">Email:</span> dtung6898@gmail.com
                         </p>
                       </div>
                     </div>

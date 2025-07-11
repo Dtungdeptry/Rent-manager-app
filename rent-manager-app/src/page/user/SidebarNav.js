@@ -24,7 +24,7 @@ const SidebarNav = () => {
       </li>
       <li className="sidebar-item">
         <NavLink to="/follow-agents" className="sidebar-link">
-          <i className="align-middle" data-feather="sliders"></i> <span className="align-middle">Người theo dõi</span>
+          <i className="align-middle" data-feather="sliders"></i> <span className="align-middle">Đang theo dõi</span>
         </NavLink>
       </li>
       <li className="sidebar-item">

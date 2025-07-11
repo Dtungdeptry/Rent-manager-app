@@ -106,9 +106,11 @@ const RentalHome = (props) => {
                                     value={cateId}
                                     onChange={handleCategoryChange}>
                                     <option value={0}>Chọn...</option>
-                                    <option value={1}>Bất động sản</option>
-                                    <option value={2}>Phòng trọ</option>
-                                    <option value={3}>Chung cư mini</option>
+                                    <option value={1}>Phòng trọ</option>
+                                    <option value={2}>Chung cư mini</option>
+                                    <option value={3}>Nhà nguyên căn</option>
+                                    <option value={4}>Văn phòng cho thuê</option>
+                                    <option value={5}>Mặt bằng kinh doanh</option>
                                 </select>
                             </div>
                         </div>
@@ -119,7 +121,7 @@ const RentalHome = (props) => {
                                     <div className="card-box-a card-shadow">
                                         <div className="img-box-a">
                                             {room.roomMedia[0] ?
-                                                <img src={room.roomMedia[0].files} alt="" className="img-a img-fluid" style={{ width: "350px", height: "450px" }} />
+                                                <img src={"http://localhost:8080/document/"+room.roomMedia[0].files} alt="" className="img-a img-fluid" style={{ width: "350px", height: "450px" }} />
                                                 :
                                                 <img src="assets/img/property-1.jpg" alt="" className="img-a img-fluid" style={{ width: "350px", height: "450px" }} />
                                             }

@@ -42,7 +42,7 @@ const AgentsGird = (props) => {
                             <div className="col-md-12 col-lg-8">
                                 <div className="title-single-box">
                                     <h1 className="title-single">NGƯỜI CHO THUÊ</h1>
-                                    <span className="color-text-a">Úy tín hàng đầu</span>
+                                    <span className="color-text-a">Uy tín hàng đầu</span>
                                 </div>
                             </div>
                             <div className="col-md-12 col-lg-4">

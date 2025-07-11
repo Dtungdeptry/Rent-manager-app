@@ -38,14 +38,6 @@ public class RoomController {
 
     private final RoomService roomService;
 
-//    @GetMapping("/all")
-//    private ResponseEntity<?> getAllRoom(@RequestParam(required = false) String title,
-//                                         @RequestParam(required = false) Boolean approve,
-//                                         @RequestParam Integer pageNo,
-//                                         @RequestParam Integer pageSize) {
-//        return ResponseEntity.ok(blogService.getAllRoomForAdmin(title, approve, pageNo, pageSize));
-//    }
-
     @GetMapping("/{userId}/rentaler")
     public ResponseEntity<?> getAllRoomOfUserId(@PathVariable Long userId,
                                                 @RequestParam Integer pageNo,
@@ -124,6 +116,9 @@ public class RoomController {
         String address = request.getParameter("address");
         Long locationId = Long.valueOf(request.getParameter("locationId"));
         Long categoryId = Long.valueOf(request.getParameter("categoryId"));
+        BigDecimal waterCost = BigDecimal.valueOf(Double.valueOf(request.getParameter("waterCost")));
+        BigDecimal publicElectricCost = BigDecimal.valueOf(Double.valueOf(request.getParameter("publicElectricCost")));
+        BigDecimal internetCost = BigDecimal.valueOf(Double.valueOf(request.getParameter("internetCost")));
         List<AssetRequest> assets = new ArrayList<>();
         for (int i = 0; i < Integer.valueOf(request.getParameter("asset")); i++) {
             String assetName = request.getParameterValues("assets[" + i + "][name]")[0];
@@ -132,7 +127,7 @@ public class RoomController {
         }
 
         List<MultipartFile> files = request.getFiles("files");
-        return new RoomRequest(title, description, price, latitude, longitude, address, locationId, categoryId, RoomStatus.ROOM_RENT, assets, files);
+        return new RoomRequest(title, description, price, latitude, longitude, address, locationId, categoryId, RoomStatus.ROOM_RENT, assets, files, waterCost, publicElectricCost, internetCost);
     }
 
 }

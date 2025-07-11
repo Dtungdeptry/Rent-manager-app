@@ -136,6 +136,7 @@ function AddMaintence(props) {
                                     <div className="row">
                                         <div className="mb-3">
                                             <label className="form-label">Tải Phiếu Bảo Trì</label>
+                                            <h6>Tải phiếu bảo trì để tạo phiếu với người thuê và đẩy lên lưu trữ trên hệ thống. Sau đó chuyển sang file .pdf để upload.<a href="https://docs.google.com/document/d/12iSAFa1kH7u3HWRKvZX7TPtp4pErkT_s/edit?usp=drive_link&ouid=100537677702036332148&rtpof=true&sd=true">Tải Mẫu</a></h6>
                                             <input className="form-control" type="file" accept=".pdf" name="files" multiple onChange={handleFileChange} />
                                         </div>
                                     </div>
