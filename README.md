@@ -29,7 +29,7 @@ Dự án xây dựng một website hỗ trợ **tìm kiếm, đăng tin và qu�
 | Layer         | Technology                  |
 |---------------|-----------------------------|
 | Backend       | Spring Boot, Spring Security, Spring Data JPA |
-| Frontend      | Thymeleaf, Bootstrap, HTML/CSS, JavaScript |
+| Frontend      | ReactJs, Bootstrap, HTML/CSS, JavaScript |
 | Database      | MySQL                        |
 | Authentication| JWT (JSON Web Token)         |
 | API           | RESTful API                  |
