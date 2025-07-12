@@ -41,7 +41,6 @@ Dự án xây dựng một website hỗ trợ **tìm kiếm, đăng tin và qu�
 - Kiến trúc phân tầng (Controller - Service - Repository)
 - Phân quyền theo vai trò (USER, RENTALER, ADMIN)
 - Hệ thống CRUD cho bài đăng, người dùng, yêu cầu thuê
-- Tích hợp bản đồ (Google Maps hoặc Leaflet.js)
 
 ---
 
